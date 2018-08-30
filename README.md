@@ -5,12 +5,13 @@
 ## Usage
 
 ```php
-<?
+<?php
 use CodeInc\TempFile\TempFile;
+
 // you can optionally specify a prefix and the parent directory to the constructor
-$tempFile = new TempFile('my_temp_file_', '/tmp');  
+$tempFile = new TempFile('my_temp_file_', '/tmp'); // creates the temp file
 $tempFile->getPath(); // returns the temp file's path
-$tempFile->getSize(); // returns the temp file's path
+$tempFile->getSize(); // returns the temp file's size
 $tempFile->getContents(); // returns the temp file's content
 $tempFile->putContents(''); // set the temp file's content 
 unset($tempFile); // deletes the temp file
@@ -18,11 +19,14 @@ unset($tempFile); // deletes the temp file
 
 You can also create a non self-destructive temp file:
 ```php
-<?
+<?php
 use CodeInc\TempFile\TempFile;
+
 $tempFile = new TempFile(null, null, false);  
 unset($tempFile); 
-file_exists($tempFile); // will return TRUE, the temp file is NOT deleted by the class destructor
+
+// will return TRUE, the temp file is NOT deleted by the class destructor
+file_exists($tempFile); 
 ```
 
 
