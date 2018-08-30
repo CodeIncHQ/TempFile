@@ -11,6 +11,7 @@ use CodeInc\TempFile\TempFile;
 // you can optionally specify a prefix and the parent directory to the constructor
 $tempFile = new TempFile('my_temp_file_', '/tmp'); // creates the temp file
 $tempFile->getPath(); // returns the temp file's path
+(string)$tempFile; // equals to getPath(), returns the temp file's path
 $tempFile->getSize(); // returns the temp file's size
 $tempFile->getContents(); // returns the temp file's content
 $tempFile->putContents(''); // set the temp file's content 
@@ -22,11 +23,12 @@ You can also create a non self-destructive temp file:
 <?php
 use CodeInc\TempFile\TempFile;
 
-$tempFile = new TempFile(null, null, false);  
+$tempFile = new TempFile(null, null, false);
+$tempFilePath = $tempFile->getPath();
 unset($tempFile); 
 
 // will return TRUE, the temp file is NOT deleted by the class destructor
-file_exists($tempFile); 
+file_exists($tempFilePath); 
 ```
 
 
